@@ -1,0 +1,61 @@
+{{- /* 사이드바: 카테고리, 최근 글, 태그 */}}
+<aside class="sidebar">
+
+  {{- /* 카테고리 */}}
+  <div class="sidebar-widget">
+    <h3>카테고리</h3>
+    <ul>
+      <li>
+        <a href="/posts/physics/">
+          물리학 개념
+          <span class="count">{{ len (where .Site.RegularPages "Section" "posts") }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/posts/problem-solving/">
+          문제풀이
+          <span class="count">
+            {{- $count := 0 }}
+            {{- range .Site.RegularPages }}
+              {{- if eq .Section "posts" }}
+                {{- $count = add $count 1 }}
+              {{- end }}
+            {{- end }}
+            {{- $count }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  {{- /* 최근 글 */}}
+  {{- $recent := first 5 .Site.RegularPages }}
+  {{- if $recent }}
+  <div class="sidebar-widget">
+    <h3>최근 글</h3>
+    <ul>
+      {{- range $recent }}
+      <li>
+        <a href="{{ .Permalink }}" title="{{ .Title }}">
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:180px;">{{ .Title }}</span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+  {{- end }}
+
+  {{- /* 태그 */}}
+  {{- $tags := .Site.Taxonomies.tags }}
+  {{- if $tags }}
+  <div class="sidebar-widget">
+    <h3>태그</h3>
+    <div class="tag-cloud">
+      {{- range $name, $pages := $tags }}
+      <a href="/tags/{{ $name | urlize }}/">{{ $name }}</a>
+      {{- end }}
+    </div>
+  </div>
+  {{- end }}
+
+</aside>

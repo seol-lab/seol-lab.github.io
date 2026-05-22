@@ -1,0 +1,74 @@
+baseURL: "https://seol-lab.github.io/"
+title: "설군의연구소"
+theme: PaperMod
+locale: ko-KR
+paginate: 10
+
+params:
+  author: "설군"
+  description: "물리학을 탐구하는 연구자의 블로그 — 개념 설명, 문제풀이, 그리고 생각들"
+
+  homeInfoParams:
+    Title: "설군의연구소"
+    Content: >
+      물리학 연구자의 개인 블로그입니다.
+      양자역학, 고전역학, 전자기학 등 물리 개념과 문제풀이를 씁니다.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/seol-lab"
+
+  # 기능 설정
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: true
+  defaultTheme: light   # 흰색 배경 고정
+
+  # 수식 전역 활성화
+  math: true
+
+  # 검색 설정
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: nav-physics
+      name: 물리학
+      url: /posts/physics/
+      weight: 1
+    - identifier: nav-problem-solving
+      name: 문제풀이
+      url: /posts/problem-solving/
+      weight: 2
+    - identifier: nav-archives
+      name: 보관함
+      url: /archives/
+      weight: 3
+    - identifier: search
+      name: 검색
+      url: /search/
+      weight: 4
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    lineNos: true
+    style: monokai
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
